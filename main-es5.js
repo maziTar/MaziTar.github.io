@@ -626,6 +626,7 @@
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _services_api_error_normalization_interceptor__WEBPACK_IMPORTED_MODULE_4__["ApiErrorNormalizationInterceptor"], multi: true },
             ];
             var prodProviders = [
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _mock_mockBackend_interceptor__WEBPACK_IMPORTED_MODULE_8__["MockBackendInterceptor"], multi: true },
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _services_toaster_interceptor_service__WEBPACK_IMPORTED_MODULE_6__["ToasterInterceptorService"], multi: true },
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _services_api_error_normalization_interceptor__WEBPACK_IMPORTED_MODULE_4__["ApiErrorNormalizationInterceptor"], multi: true }
                 // TODO:: OPTIONAL Add Error monitoring for production -> https://sentry.io/for/angular/
@@ -671,6 +672,7 @@
             /* harmony import */ var _mockBackend_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mockBackend.model */ "./src/app/core/mock/mockBackend.model.ts");
             /* harmony import */ var rxjs_ajax__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/ajax */ "./node_modules/rxjs/_esm2015/ajax/index.js");
             /* harmony import */ var _shared_consts_weather_consts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../shared/consts/weather.consts */ "./src/app/shared/consts/weather.consts.ts");
+            /* harmony import */ var _models_api_models__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../models/api.models */ "./src/app/core/models/api.models.ts");
             var MockBackendInterceptor = /** @class */ (function () {
                 function MockBackendInterceptor() {
                     this.apiAutocompleteNamespace = _shared_consts_weather_consts__WEBPACK_IMPORTED_MODULE_7__["ACCUWEATHER_API_AUTOCOMPLETE_URL"];
@@ -698,7 +700,7 @@
                 MockBackendInterceptor.prototype.getApiCall = function (request, next, mockFileName) {
                     var url = "/assets/mock/" + mockFileName + ".json";
                     return rxjs_ajax__WEBPACK_IMPORTED_MODULE_6__["ajax"].getJSON(url)
-                        .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (body) { return new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpResponse"]({ status: 200, body: Object(_mockBackend_model__WEBPACK_IMPORTED_MODULE_5__["AppHttpResponse"])(body) }); }));
+                        .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (body) { return new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpResponse"]({ status: _models_api_models__WEBPACK_IMPORTED_MODULE_8__["EResultCodes"].Success, body: Object(_mockBackend_model__WEBPACK_IMPORTED_MODULE_5__["AppHttpResponse"])(body) }); }));
                 };
                 return MockBackendInterceptor;
             }());
